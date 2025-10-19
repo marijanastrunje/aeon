@@ -1,102 +1,119 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCode,
   faRocket,
   faLightbulb,
-  faCheckCircle,
+  faUsers,
+  faAward,
 } from "@fortawesome/free-solid-svg-icons";
 import "./About.css";
 
 const About = () => {
-  const skills = [
-    "React & Next.js",
-    "Node.js & Express",
-    "TypeScript",
-    "Tailwind CSS",
-    "MongoDB & PostgreSQL",
-    "REST & GraphQL APIs",
-    "Git & CI/CD",
-    "UI/UX Design",
-  ];
-
-  const values = [
-    {
-      icon: faCode,
-      title: "Clean Code",
-      description:
-        "Pišem čitljiv, maintainable kod koji slijedi best practices i industry standarde.",
-    },
+  const features = [
     {
       icon: faRocket,
-      title: "Performance",
+      title: "Brzi Razvoj",
       description:
-        "Optimiziram svaki aspekt aplikacije za maksimalnu brzinu i efikasnost.",
+        "Koristim najnovije tehnologije i best practices za brzu isporuku kvalitetnih rješenja.",
     },
     {
       icon: faLightbulb,
-      title: "Inovacija",
+      title: "Kreativna Rješenja",
       description:
-        "Uvijek učim nove tehnologije i implementiram najmodernija rješenja.",
+        "Svaki projekt je jedinstvena prilika za inovaciju i kreiranje nečeg posebnog.",
+    },
+    {
+      icon: faUsers,
+      title: "User-Centric Pristup",
+      description:
+        "Korisničko iskustvo je na prvom mjestu - dizajniram s ljudima u mislima.",
+    },
+    {
+      icon: faAward,
+      title: "Vrhunska Kvaliteta",
+      description:
+        "Posvećen sam izvrsnosti u svakom aspektu projekta - od koda do dizajna.",
     },
   ];
 
   return (
     <section id="about" className="about-section">
+      {/* Background */}
+      <div className="about-background">
+        <div className="about-orb"></div>
+      </div>
+
       <div className="container">
-        {/* Section Header */}
-        <div className="section-header">
-          <span className="section-subtitle">O Meni</span>
-          <h2 className="section-title">Passion. Performance. Precision.</h2>
-          <p className="section-description">
-            Full-stack developer s fokusom na kreiranje modernih, skalabilnih i
-            user-friendly web aplikacija koje rješavaju stvarne poslovne
-            izazove.
+        {/* Header */}
+        <div className="about-header">
+          <h2 className="about-title">O Nama</h2>
+          <p className="about-subtitle">
+            Strast prema tehnologiji i dizajnu pretvaram u digitalna iskustva
+            koja nadilaze očekivanja
           </p>
         </div>
 
-        <div className="row g-4 align-items-center">
-          {/* About Content */}
-          <div className="col-lg-6">
-            <div className="about-content">
-              <h3 className="about-subtitle">Moj Pristup</h3>
-              <p className="about-text">
-                Vjerujem da svaki projekt zaslužuje pažnju do najsitnijih
-                detalja. Kombiniram tehničku ekspertizu s kreativnim pristupom
-                kako bih kreirao rješenja koja ne samo da izgledaju odlično, već
-                i performiraju izvrsno.
-              </p>
-              <p className="about-text">Moj fokus je na:</p>
+        {/* Main Content */}
+        <div className="about-content">
+          {/* Image Side */}
+          <div className="about-image-wrapper">
+            <div className="about-image-container">
+              <div className="about-image-glow"></div>
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
+                alt="Digital workspace"
+                className="about-image"
+              />
+            </div>
+          </div>
 
-              {/* Skills List */}
-              <div className="skills-grid">
-                {skills.map((skill, index) => (
-                  <div key={index} className="skill-item">
-                    <FontAwesomeIcon
-                      icon={faCheckCircle}
-                      className="skill-icon"
-                    />
-                    <span>{skill}</span>
-                  </div>
-                ))}
+          {/* Text Side */}
+          <div className="about-text">
+            <div className="about-description">
+              <p>
+                <strong>Dobrodošli u budućnost web developmenta!</strong> Kao
+                specijalizirani full-stack developer, spajam tehničku ekspertizu
+                s kreativnom vizijom kako bih stvorio digitalna rješenja koja
+                oduševljavaju.
+              </p>
+              <p>
+                S više od 5 godina iskustva u industriji, radim s najnovijim
+                tehnologijama poput React, Node.js, i TypeScript. Moj cilj je
+                jednostavan - pretvoriti vaše ideje u stvarnost kroz
+                futuristički dizajn i čistu, održivu arhitekturu koda.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="about-cta">
+              <button
+                className="btn btn-silver btn-lg"
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                <FontAwesomeIcon icon={faRocket} className="me-2" />
+                Započnimo Suradnju
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="about-features">
+          {features.map((feature, index) => (
+            <div key={index} className="feature-item">
+              <div className="feature-icon">
+                <FontAwesomeIcon icon={feature.icon} />
+              </div>
+              <div className="feature-content">
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
               </div>
             </div>
-          </div>
-
-          {/* Values Cards */}
-          <div className="col-lg-6">
-            <div className="values-grid">
-              {values.map((value, index) => (
-                <div key={index} className="value-card">
-                  <div className="value-icon">
-                    <FontAwesomeIcon icon={value.icon} />
-                  </div>
-                  <h4 className="value-title">{value.title}</h4>
-                  <p className="value-description">{value.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

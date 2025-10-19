@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faMapMarkerAlt,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import "./Contact.css";
 
 const Contact = () => {
@@ -15,105 +11,100 @@ const Contact = () => {
     message: "",
   });
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Ovdje dodaj logiku za slanje forme (npr. EmailJS, API endpoint, itd.)
     console.log("Form submitted:", formData);
-    alert("Poruka poslana! (ovo je demo)");
+    alert("Hvala na poruci! Javit ću se uskoro.");
+    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   return (
     <section id="contact" className="contact-section">
+      {/* Background */}
+      <div className="contact-background">
+        <div className="contact-orb-1"></div>
+        <div className="contact-orb-2"></div>
+      </div>
+
       <div className="container">
-        <h2 className="contact-heading">Kontakt</h2>
-        <p className="contact-subtitle">Započnimo projekt zajedno</p>
-        <div className="row g-4">
-          <div className="col-lg-4">
-            <div className="contact-info">
-              <div className="d-flex align-items-center mb-3">
-                <div className="contact-icon-box">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </div>
-                <div>
-                  <h4 className="contact-info-title">Email</h4>
-                  <p className="contact-info-text">info@aeonweb.com</p>
-                </div>
+        {/* Header */}
+        <div className="contact-header">
+          <h2 className="contact-title">Kontaktirajte Me</h2>
+          <p className="contact-subtitle">
+            Imate projekt na umu? Razgovarajmo o tome kako vam mogu pomoći
+            ostvariti vaše digitalne ciljeve
+          </p>
+        </div>
+
+        {/* Contact Grid */}
+        <div className="contact-grid">
+          {/* Contact Form */}
+          <div className="contact-form-wrapper">
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Ime i Prezime</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Vaše ime..."
+                  required
+                />
               </div>
-            </div>
-            <div className="contact-info">
-              <div className="d-flex align-items-center mb-3">
-                <div className="contact-icon-box">
-                  <FontAwesomeIcon icon={faPhone} />
-                </div>
-                <div>
-                  <h4 className="contact-info-title">Telefon</h4>
-                  <p className="contact-info-text">+385 99 123 4567</p>
-                </div>
+
+              <div className="form-group">
+                <label htmlFor="email">Email Adresa</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="vas.email@example.com"
+                  required
+                />
               </div>
-            </div>
-            <div className="contact-info">
-              <div className="d-flex align-items-center">
-                <div className="contact-icon-box">
-                  <FontAwesomeIcon icon={faMapMarkerAlt} />
-                </div>
-                <div>
-                  <h4 className="contact-info-title">Lokacija</h4>
-                  <p className="contact-info-text">Zagreb, Hrvatska</p>
-                </div>
+
+              <div className="form-group">
+                <label htmlFor="subject">Predmet</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="O čemu se radi?"
+                  required
+                />
               </div>
-            </div>
-          </div>
-          <div className="col-lg-8">
-            <div className="contact-form">
-              <div className="row">
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    placeholder="Ime"
-                    className="contact-input"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="col-md-6">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="contact-input"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Poruka</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Vaša poruka..."
+                  required
+                ></textarea>
               </div>
-              <input
-                type="text"
-                placeholder="Predmet"
-                className="contact-input"
-                value={formData.subject}
-                onChange={(e) =>
-                  setFormData({ ...formData, subject: e.target.value })
-                }
-              />
-              <textarea
-                placeholder="Poruka"
-                rows="6"
-                className="contact-textarea"
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-              ></textarea>
-              <button
-                type="button"
-                className="btn btn-primary w-100"
-                onClick={handleSubmit}
-              >
+
+              <button type="submit" className="submit-btn">
+                <FontAwesomeIcon icon={faPaperPlane} className="me-2" />
                 Pošalji Poruku
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

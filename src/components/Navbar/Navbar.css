@@ -4,17 +4,21 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: all var(--transition-base);
-  padding: var(--spacing-md) 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.25rem 0;
 }
 
 .navbar-scrolled {
-  background: rgba(10, 14, 39, 0.95);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-  padding: var(--spacing-sm) 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 39, 0.95) 0%,
+    rgba(26, 31, 58, 0.92) 100%
+  );
+  backdrop-filter: blur(24px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(0, 212, 255, 0.08);
+  padding: 0.875rem 0;
   top: 0;
-  border-bottom: 1px solid rgba(184, 188, 200, 0.1);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
 }
 
 .navbar-glow {
@@ -23,13 +27,18 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--gradient-silver);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--neon-blue) 50%,
+    transparent 100%
+  );
   opacity: 0;
-  transition: var(--transition-base);
+  transition: opacity 0.4s ease;
 }
 
 .navbar-scrolled .navbar-glow {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .navbar-content {
@@ -38,60 +47,72 @@
   justify-content: space-between;
 }
 
-/* LOGO - Svemirski dizajn */
+/* LOGO - Moderniji dizajn */
 .navbar-logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 0.875rem;
   cursor: pointer;
-  transition: var(--transition-base);
+  transition: all 0.3s ease;
 }
 
 .logo-orbit {
   position: relative;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--silver-base);
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--neon-blue);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: rotate 20s linear infinite;
-  box-shadow: 0 0 20px rgba(184, 188, 200, 0.3),
-    inset 0 0 20px rgba(184, 188, 200, 0.1);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3),
+    inset 0 0 20px rgba(0, 212, 255, 0.1);
+  background: rgba(0, 212, 255, 0.03);
 }
 
 .logo-planet {
-  width: 12px;
-  height: 12px;
-  background: var(--gradient-silver-glow);
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(
+    circle,
+    var(--neon-blue) 0%,
+    var(--neon-cyan) 100%
+  );
   border-radius: 50%;
-  box-shadow: 0 0 15px rgba(184, 188, 200, 0.8);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.9);
   animation: glow 2s ease-in-out infinite;
 }
 
 .logo-text {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 700;
-  background: var(--gradient-silver-glow);
+  background: linear-gradient(
+    135deg,
+    var(--neon-blue) 0%,
+    var(--silver-bright) 50%,
+    var(--neon-cyan) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  filter: drop-shadow(0 0 10px rgba(184, 188, 200, 0.4));
+  filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
+  font-family: "Inter", -apple-system, sans-serif;
 }
 
 .navbar-logo:hover .logo-orbit {
-  animation-duration: 10s;
-  box-shadow: 0 0 30px rgba(184, 188, 200, 0.6),
-    inset 0 0 30px rgba(184, 188, 200, 0.2);
+  animation-duration: 8s;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.6),
+    inset 0 0 30px rgba(0, 212, 255, 0.2);
+  border-color: var(--neon-cyan);
 }
 
-/* Desktop Menu */
+/* Desktop Menu - Elegantniji */
 .navbar-menu-desktop {
   display: none;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -104,33 +125,39 @@
   background: none;
   border: none;
   color: var(--text-secondary);
-  font-size: var(--font-size-base);
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 600;
   cursor: pointer;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  transition: var(--transition-base);
+  padding: 0.625rem 1.25rem;
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+  font-family: "Inter", -apple-system, sans-serif;
 }
 
 .nav-link-glow {
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%) scaleX(0);
-  width: 80%;
+  width: 70%;
   height: 2px;
-  background: var(--gradient-silver-glow);
-  box-shadow: 0 0 10px rgba(184, 188, 200, 0.6);
-  transition: var(--transition-base);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-blue),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.8);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--silver-bright);
-  text-shadow: 0 0 10px rgba(184, 188, 200, 0.5);
+  color: var(--neon-blue);
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
 }
 
 .nav-link:hover .nav-link-glow,
@@ -138,20 +165,39 @@
   transform: translateX(-50%) scaleX(1);
 }
 
-/* Mobile Toggle */
+/* CTA Button - Srebrni */
+.navbar-menu-desktop .btn-silver {
+  margin-left: 1rem;
+  background: var(--gradient-silver-glow);
+  color: var(--space-dark);
+  border: 2px solid var(--silver-bright);
+  padding: 0.75rem 1.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  box-shadow: var(--shadow-silver);
+}
+
+.navbar-menu-desktop .btn-silver:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(184, 188, 200, 0.6);
+}
+
+/* Mobile Toggle - Elegantniji */
 .navbar-mobile-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: 2px solid var(--silver-base);
-  color: var(--silver-bright);
+  background: rgba(0, 212, 255, 0.08);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  color: var(--neon-blue);
   font-size: 1.25rem;
   cursor: pointer;
-  padding: var(--spacing-xs);
-  border-radius: var(--radius-md);
-  transition: var(--transition-base);
-  box-shadow: 0 0 10px rgba(184, 188, 200, 0.2);
+  padding: 0.625rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  width: 44px;
+  height: 44px;
 }
 
 @media (min-width: 768px) {
@@ -161,18 +207,20 @@
 }
 
 .navbar-mobile-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(184, 188, 200, 0.4);
+  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--neon-blue);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
 }
 
-/* Mobile Menu */
+/* Mobile Menu - Ljepši */
 .navbar-menu-mobile {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-lg) 0;
-  margin-top: var(--spacing-md);
-  border-top: 1px solid rgba(184, 188, 200, 0.1);
+  gap: 0.75rem;
+  padding: 1.5rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.15);
   animation: fadeInUp 0.3s ease;
 }
 
@@ -183,25 +231,79 @@
 }
 
 .nav-link-mobile {
-  background: rgba(26, 31, 58, 0.3);
-  border: 1px solid rgba(184, 188, 200, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(26, 31, 58, 0.4) 0%,
+    rgba(45, 53, 97, 0.3) 100%
+  );
+  border: 1px solid rgba(0, 212, 255, 0.2);
   color: var(--text-secondary);
-  font-size: var(--font-size-lg);
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  padding: var(--spacing-md);
-  border-radius: var(--radius-lg);
-  transition: var(--transition-base);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: left;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+  font-family: "Inter", -apple-system, sans-serif;
 }
 
 .nav-link-mobile:hover,
 .nav-link-mobile.active {
-  background: rgba(184, 188, 200, 0.1);
-  border-color: var(--silver-base);
-  color: var(--silver-bright);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 255, 0.12) 0%,
+    rgba(0, 255, 242, 0.08) 100%
+  );
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
   transform: translateX(8px);
-  box-shadow: 0 0 20px rgba(184, 188, 200, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.25);
+}
+
+.navbar-menu-mobile .btn-silver {
+  margin-top: 0.5rem;
+  background: var(--gradient-silver-glow);
+  color: var(--space-dark);
+  border: 2px solid var(--silver-bright);
+  font-weight: 600;
+  box-shadow: var(--shadow-silver);
+}
+
+.navbar-menu-mobile .btn-silver:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(184, 188, 200, 0.6);
+}
+
+/* Animacije */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
