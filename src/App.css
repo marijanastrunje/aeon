@@ -6,31 +6,33 @@
 
 :root {
   /* SVEMIRSKA PALETA - Deep Space Colors */
-  --space-dark: #0a0e27; /* Duboki svemir */
-  --space-navy: #1a1f3a; /* Tamno plava nebula */
-  --space-blue: #2d3561; /* Svemirska plava */
-  --space-purple: #4a148c; /* Nebula purple */
+  --space-dark: #0a0e27;
+  --space-navy: #1a1f3a;
+  --space-blue: #2d3561;
+  --space-purple: #4a148c;
 
-  /* PRAVA SREBRNA - Metalna, ne bijela! */
-  --silver-dark: #8b8d94; /* Tamna srebrna - metalna */
-  --silver-base: #b8bcc8; /* Osnovna srebrna */
-  --silver-light: #d4d7dd; /* Svijetla srebrna */
-  --silver-bright: #e8eaed; /* Sjajna srebrna */
-  --silver-metal: #9ca3af; /* Metalna srebrna */
+  /* PRAVA SREBRNA - Metalna */
+  --silver-dark: #8b8d94;
+  --silver-base: #b8bcc8;
+  --silver-light: #d4d7dd;
+  --silver-bright: #e8eaed;
+  --silver-metal: #9ca3af;
 
   /* AKCENTI - Neon Glow */
-  --neon-blue: #00d4ff; /* Neon plava */
-  --neon-purple: #b84cff; /* Neon ljubičasta */
-  --neon-cyan: #00fff2; /* Neon cyan */
-  --neon-pink: #ff006e; /* Neon pink */
+  --neon-blue: #00d4ff;
+  --neon-purple: #b84cff;
+  --neon-cyan: #00fff2;
+  --neon-pink: #ff006e;
+  --neon-yellow: #ffd700;
+  --neon-green: #00ff88;
 
-  /* TEKSTUALNE BOJE - Prioritet SREBRNOJ */
-  --text-primary: #e8eaed; /* Sjajna srebrna */
-  --text-secondary: #b8bcc8; /* Srebrna */
-  --text-muted: #8b8d94; /* Tamna srebrna */
-  --text-accent: #d4d7dd; /* Svijetlo srebrna */
+  /* TEKSTUALNE BOJE */
+  --text-primary: #e8eaed;
+  --text-secondary: #b8bcc8;
+  --text-muted: #8b8d94;
+  --text-accent: #d4d7dd;
 
-  /* GRADIJENTI - Svemirski sa Srebrnom */
+  /* GRADIJENTI */
   --gradient-silver: linear-gradient(
     135deg,
     #8b8d94 0%,
@@ -55,6 +57,11 @@
     #b84cff 0%,
     #00d4ff 50%,
     #0a0e27 100%
+  );
+  --gradient-text: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--neon-blue) 100%
   );
 
   /* SHADOWS - Svemirski Glow */
@@ -99,6 +106,20 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.3s ease;
   --transition-slow: 0.5s ease;
+
+  /* CARD STYLES */
+  --card-bg: linear-gradient(
+    135deg,
+    rgba(26, 31, 58, 0.6) 0%,
+    rgba(45, 53, 97, 0.4) 100%
+  );
+  --card-border: 1px solid rgba(0, 212, 255, 0.2);
+  --card-hover-border: var(--neon-blue);
+
+  /* OPACITY LEVELS */
+  --opacity-low: 0.1;
+  --opacity-med: 0.2;
+  --opacity-high: 0.3;
 }
 
 html {
@@ -131,10 +152,11 @@ body::before {
     ),
     radial-gradient(2px 2px at 60% 70%, var(--silver-light), transparent),
     radial-gradient(1px 1px at 50% 50%, var(--silver-bright), transparent),
-    radial-gradient(1px 1px at 80% 10%, var(--silver-base), transparent),
+    radial-gradient(1px 1px at 80% 10%, var(--neon-cyan), transparent),
     radial-gradient(2px 2px at 90% 60%, var(--silver-metal), transparent),
     radial-gradient(1px 1px at 33% 80%, var(--silver-light), transparent),
-    radial-gradient(2px 2px at 15% 90%, var(--silver-base), transparent);
+    radial-gradient(2px 2px at 15% 90%, var(--neon-blue), transparent),
+    radial-gradient(1px 1px at 70% 40%, var(--silver-base), transparent);
   background-size: 200% 200%;
   animation: stars 60s linear infinite;
   pointer-events: none;
@@ -181,7 +203,7 @@ section {
   }
 }
 
-/* TYPOGRAPHY - Srebrna */
+/* TYPOGRAPHY */
 h1,
 h2,
 h3,
@@ -192,13 +214,12 @@ h6 {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: var(--spacing-md);
-  text-shadow: 0 0 20px rgba(184, 188, 200, 0.3);
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
 }
 
 h1 {
   font-size: var(--font-size-3xl);
 }
-
 h2 {
   font-size: var(--font-size-2xl);
 }
@@ -222,7 +243,7 @@ a {
   transition: var(--transition-base);
 }
 
-/* BUTTONS - Svemirski Dizajn */
+/* BUTTONS */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -336,10 +357,13 @@ a {
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateY(0px) translateX(0px);
   }
-  50% {
-    transform: translateY(-20px);
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-10px);
   }
 }
 
@@ -349,7 +373,7 @@ a {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 }
 
@@ -359,6 +383,18 @@ a {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes nebulaFloat {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 0.8;
   }
 }
 
