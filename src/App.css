@@ -1,38 +1,369 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
+:root {
+  /* SVEMIRSKA PALETA - Deep Space Colors */
+  --space-dark: #0a0e27; /* Duboki svemir */
+  --space-navy: #1a1f3a; /* Tamno plava nebula */
+  --space-blue: #2d3561; /* Svemirska plava */
+  --space-purple: #4a148c; /* Nebula purple */
+
+  /* PRAVA SREBRNA - Metalna, ne bijela! */
+  --silver-dark: #8b8d94; /* Tamna srebrna - metalna */
+  --silver-base: #b8bcc8; /* Osnovna srebrna */
+  --silver-light: #d4d7dd; /* Svijetla srebrna */
+  --silver-bright: #e8eaed; /* Sjajna srebrna */
+  --silver-metal: #9ca3af; /* Metalna srebrna */
+
+  /* AKCENTI - Neon Glow */
+  --neon-blue: #00d4ff; /* Neon plava */
+  --neon-purple: #b84cff; /* Neon ljubičasta */
+  --neon-cyan: #00fff2; /* Neon cyan */
+  --neon-pink: #ff006e; /* Neon pink */
+
+  /* TEKSTUALNE BOJE - Prioritet SREBRNOJ */
+  --text-primary: #e8eaed; /* Sjajna srebrna */
+  --text-secondary: #b8bcc8; /* Srebrna */
+  --text-muted: #8b8d94; /* Tamna srebrna */
+  --text-accent: #d4d7dd; /* Svijetlo srebrna */
+
+  /* GRADIJENTI - Svemirski sa Srebrnom */
+  --gradient-silver: linear-gradient(
+    135deg,
+    #8b8d94 0%,
+    #d4d7dd 50%,
+    #8b8d94 100%
+  );
+  --gradient-silver-glow: linear-gradient(
+    135deg,
+    #b8bcc8 0%,
+    #e8eaed 50%,
+    #b8bcc8 100%
+  );
+  --gradient-space: linear-gradient(135deg, #00d4ff 0%, #b84cff 100%);
+  --gradient-nebula: linear-gradient(
+    135deg,
+    #4a148c 0%,
+    #00d4ff 50%,
+    #b84cff 100%
+  );
+  --gradient-cosmic: radial-gradient(
+    circle,
+    #b84cff 0%,
+    #00d4ff 50%,
+    #0a0e27 100%
+  );
+
+  /* SHADOWS - Svemirski Glow */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.8);
+  --shadow-silver: 0 0 30px rgba(184, 188, 200, 0.4);
+  --shadow-neon-blue: 0 0 40px rgba(0, 212, 255, 0.6);
+  --shadow-neon-purple: 0 0 40px rgba(184, 76, 255, 0.6);
+
+  /* SPACING */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* TYPOGRAPHY */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3rem;
+
+  /* BORDER RADIUS */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* TRANSITIONS */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--space-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* SVEMIRSKI BACKGROUND - Animated Stars */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      2px 2px at 20% 30%,
+      var(--silver-metal),
+      transparent
+    ),
+    radial-gradient(2px 2px at 60% 70%, var(--silver-light), transparent),
+    radial-gradient(1px 1px at 50% 50%, var(--silver-bright), transparent),
+    radial-gradient(1px 1px at 80% 10%, var(--silver-base), transparent),
+    radial-gradient(2px 2px at 90% 60%, var(--silver-metal), transparent),
+    radial-gradient(1px 1px at 33% 80%, var(--silver-light), transparent),
+    radial-gradient(2px 2px at 15% 90%, var(--silver-base), transparent);
+  background-size: 200% 200%;
+  animation: stars 60s linear infinite;
   pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes stars {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+section {
+  padding: var(--spacing-2xl) 0;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 5rem 0;
+  }
+}
+
+/* TYPOGRAPHY - Srebrna */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  text-shadow: 0 0 20px rgba(184, 188, 200, 0.3);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--font-size-5xl);
+  }
+  h2 {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+a {
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+/* BUTTONS - Svemirski Dizajn */
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: var(--transition-slow);
 }
 
-@keyframes App-logo-spin {
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-silver {
+  background: var(--gradient-silver-glow);
+  color: var(--space-dark);
+  box-shadow: var(--shadow-silver);
+  border: 2px solid var(--silver-bright);
+}
+
+.btn-silver:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px rgba(184, 188, 200, 0.6);
+}
+
+.btn-neon {
+  background: transparent;
+  color: var(--neon-blue);
+  border: 2px solid var(--neon-blue);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.btn-neon:hover {
+  background: rgba(0, 212, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-neon-blue);
+}
+
+.btn-lg {
+  padding: 1.25rem 3rem;
+  font-size: var(--font-size-lg);
+}
+
+.btn-sm {
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size-sm);
+}
+
+/* UTILITY CLASSES */
+.text-silver {
+  background: var(--gradient-silver-glow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(184, 188, 200, 0.5));
+}
+
+.text-neon {
+  background: var(--gradient-space);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes rotate {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ACCESSIBILITY */
+*:focus-visible {
+  outline: 2px solid var(--neon-blue);
+  outline-offset: 2px;
 }

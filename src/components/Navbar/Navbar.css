@@ -1,0 +1,207 @@
+.navbar {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all var(--transition-base);
+  padding: var(--spacing-md) 0;
+}
+
+.navbar-scrolled {
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  padding: var(--spacing-sm) 0;
+  top: 0;
+  border-bottom: 1px solid rgba(184, 188, 200, 0.1);
+}
+
+.navbar-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-silver);
+  opacity: 0;
+  transition: var(--transition-base);
+}
+
+.navbar-scrolled .navbar-glow {
+  opacity: 0.5;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO - Svemirski dizajn */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.logo-orbit {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--silver-base);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotate 20s linear infinite;
+  box-shadow: 0 0 20px rgba(184, 188, 200, 0.3),
+    inset 0 0 20px rgba(184, 188, 200, 0.1);
+}
+
+.logo-planet {
+  width: 12px;
+  height: 12px;
+  background: var(--gradient-silver-glow);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(184, 188, 200, 0.8);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--gradient-silver-glow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 10px rgba(184, 188, 200, 0.4));
+}
+
+.navbar-logo:hover .logo-orbit {
+  animation-duration: 10s;
+  box-shadow: 0 0 30px rgba(184, 188, 200, 0.6),
+    inset 0 0 30px rgba(184, 188, 200, 0.2);
+}
+
+/* Desktop Menu */
+.navbar-menu-desktop {
+  display: none;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .navbar-menu-desktop {
+    display: flex;
+  }
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-link-glow {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--gradient-silver-glow);
+  box-shadow: 0 0 10px rgba(184, 188, 200, 0.6);
+  transition: var(--transition-base);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--silver-bright);
+  text-shadow: 0 0 10px rgba(184, 188, 200, 0.5);
+}
+
+.nav-link:hover .nav-link-glow,
+.nav-link.active .nav-link-glow {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Mobile Toggle */
+.navbar-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid var(--silver-base);
+  color: var(--silver-bright);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+  box-shadow: 0 0 10px rgba(184, 188, 200, 0.2);
+}
+
+@media (min-width: 768px) {
+  .navbar-mobile-toggle {
+    display: none;
+  }
+}
+
+.navbar-mobile-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(184, 188, 200, 0.4);
+}
+
+/* Mobile Menu */
+.navbar-menu-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg) 0;
+  margin-top: var(--spacing-md);
+  border-top: 1px solid rgba(184, 188, 200, 0.1);
+  animation: fadeInUp 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .navbar-menu-mobile {
+    display: none;
+  }
+}
+
+.nav-link-mobile {
+  background: rgba(26, 31, 58, 0.3);
+  border: 1px solid rgba(184, 188, 200, 0.1);
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  cursor: pointer;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-base);
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-link-mobile:hover,
+.nav-link-mobile.active {
+  background: rgba(184, 188, 200, 0.1);
+  border-color: var(--silver-base);
+  color: var(--silver-bright);
+  transform: translateX(8px);
+  box-shadow: 0 0 20px rgba(184, 188, 200, 0.2);
+}

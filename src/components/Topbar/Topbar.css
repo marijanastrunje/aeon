@@ -1,0 +1,124 @@
+.topbar {
+  background: rgba(26, 31, 58, 0.6);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(184, 188, 200, 0.15);
+  padding: 0.875rem 0;
+  font-size: var(--font-size-sm);
+  position: relative;
+}
+
+.topbar-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gradient-silver);
+  opacity: 0.3;
+}
+
+.topbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.topbar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--text-secondary);
+  transition: var(--transition-base);
+  position: relative;
+}
+
+.topbar-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gradient-silver-glow);
+  transition: var(--transition-base);
+}
+
+.topbar-link:hover {
+  color: var(--silver-bright);
+  text-shadow: 0 0 10px rgba(184, 188, 200, 0.5);
+}
+
+.topbar-link:hover::after {
+  width: 100%;
+}
+
+.topbar-link svg {
+  color: var(--silver-base);
+  font-size: 0.875rem;
+  filter: drop-shadow(0 0 5px rgba(184, 188, 200, 0.3));
+}
+
+.topbar-link span {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .topbar-link span {
+    display: inline;
+  }
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.topbar-social {
+  color: var(--text-muted);
+  font-size: 1rem;
+  transition: var(--transition-base);
+  position: relative;
+}
+
+.topbar-social::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(184, 188, 200, 0.2), transparent);
+  border-radius: 50%;
+  transition: var(--transition-base);
+}
+
+.topbar-social:hover {
+  color: var(--silver-bright);
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 10px rgba(184, 188, 200, 0.6));
+}
+
+.topbar-social:hover::before {
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 767px) {
+  .topbar-content {
+    justify-content: center;
+  }
+  .topbar-left {
+    gap: var(--spacing-md);
+  }
+}
